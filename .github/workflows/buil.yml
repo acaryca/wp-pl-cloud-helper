@@ -1,0 +1,58 @@
+name: Création du zip de l'extension Wordpress
+on:
+  push:
+    branches: [main]
+
+jobs:
+  create-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Get the date
+        id: date
+        run: |
+          export TZ=America/Toronto
+          echo "::set-output name=date::$(date +'%m%d-%H%M-%S')"
+
+      - name: Read INFOS.json
+        id: infos
+        run: |
+          echo "::set-output name=dev::$(jq -r .dev INFOS.json)"
+          echo "::set-output name=version::$(jq -r .version INFOS.json)"
+        shell: bash
+
+      - name: Create release
+        id: create_release
+        uses: actions/create-release@v1
+        with:
+          tag_name: ${{ steps.infos.outputs.version }}${{ steps.infos.outputs.dev == 'true' && format('-dev-{0}', steps.date.outputs.date) || '' }}
+          release_name: ${{ steps.infos.outputs.version }}${{ steps.infos.outputs.dev == 'true' && format('-dev-{0}', steps.date.outputs.date) || '' }}
+          draft: false
+          prerelease: ${{ steps.infos.outputs.dev == 'true' }}
+
+      - name: Create directory and move files
+        run: |
+          mkdir acary-cloud-helper
+          find . -maxdepth 1 ! -name 'acary-cloud-helper' ! -name 'README.md' ! -name '.github' ! -name '.git' ! -name '.gitignore' ! -name 'CHANGELOG.md' ! -name 'INFOS.json' -exec mv {} acary-cloud-helper/ \;
+
+      - name: Change version in acary-cloud-helper.php
+        run: |
+          VERSION=${{ steps.infos.outputs.version }}${{ steps.infos.outputs.dev == 'true' && format('-dev-{0}', steps.date.outputs.date) || '' }}
+          DEV=${{ steps.infos.outputs.dev }}
+          sed -i "s/Version: .*/Version: $VERSION/g" acary-cloud-helper/acary-cloud-helper.php
+          sed -i "s/define('ACARYCLOUDHELPER_VERSION', '.*');/define('ACARYCLOUDHELPER_VERSION', '$VERSION');/g" acary-cloud-helper/acary-cloud-helper.php
+          sed -i "s/define('ADNCOMM_CORE_PL_DEV', .*);/define('ADNCOMM_CORE_PL_DEV', $DEV);/g" acary-cloud-helper/acary-cloud-helper.php
+          sed -i "s/define('Stable tag: .*/define('Stable tag: $VERSION');/g" acary-cloud-helper/readme.txt
+
+      - name: Create zip of all the files named acary-cloud-helper.zip
+        run: zip -r acary-cloud-helper.zip acary-cloud-helper/
+
+      - name: Upload release asset
+        uses: actions/upload-release-asset@v1
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./acary-cloud-helper.zip
+          asset_name: acary-cloud-helper.zip
+          asset_content_type: application/zip
