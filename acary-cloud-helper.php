@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name:   Cloud - Helper
+ * Plugin Name:   Acary Cloud
  * Description:   Ce plugin, conçu par Acary, est un plugin multifonction conçu pour les sites WordPress hébergés sur nos serveurs cloud, offrant une gamme d'outils pratiques. 
  * Version:       0.0.1
  * Author:        Acary
