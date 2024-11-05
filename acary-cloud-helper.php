@@ -16,3 +16,4 @@ if ( ! defined( 'ACARYCLOUDHELPER_VERSION' ) ) define( 'ACARYCLOUDHELPER_VERSION
 if ( ! defined( 'ACARYCLOUDHELPER_ABSPATH' ) ) define( 'ACARYCLOUDHELPER_ABSPATH', plugin_dir_path( __FILE__ ) );
 
 require_once( ACARYCLOUDHELPER_ABSPATH . '/core/plugin-register-settings.php' );
+require_once( ACARYCLOUDHELPER_ABSPATH . '/core/plugin-update.php' );
