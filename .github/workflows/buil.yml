@@ -23,13 +23,6 @@ jobs:
           echo "::set-output name=version::$(jq -r .version INFOS.json)"
         shell: bash
 
-      - name: Create tag
-        id: create_tag
-        run: |
-          TAG=${{ steps.infos.outputs.version }}${{ steps.infos.outputs.dev == 'true' && format('-dev-{0}', steps.date.outputs.date) || '' }}
-          git tag $TAG
-          git push origin $TAG
-
       - name: Create directory and move files
         run: |
           mkdir acary-cloud-helper
@@ -55,8 +48,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.PAT }}
         with:
-          tag_name: ${{ steps.create_tag.outputs.tag }}
-          release_name: ${{ steps.create_tag.outputs.tag }}
+          tag_name: ${{ steps.infos.outputs.version }}${{ steps.infos.outputs.dev == 'true' && format('-dev-{0}', steps.date.outputs.date) || '' }}
+          release_name: ${{ steps.infos.outputs.version }}${{ steps.infos.outputs.dev == 'true' && format('-dev-{0}', steps.date.outputs.date) || '' }}
           draft: false
           prerelease: ${{ steps.infos.outputs.dev == 'true' }}
           generate_release_notes: false  # N'ajoute pas de notes de publication par défaut
