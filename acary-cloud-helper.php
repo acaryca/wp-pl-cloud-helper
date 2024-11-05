@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name:   Cloud - Helper
- * Description:   Ce plugin, conçu par Acary, est un plugin multifonction conçu pour les sites WordPress hébergés sur nos serveurs cloud, offrant une gamme d'outils pratiques pour simplifier la gestion et l'administration. 
+ * Description:   Ce plugin, conçu par Acary, est un plugin multifonction conçu pour les sites WordPress hébergés sur nos serveurs cloud, offrant une gamme d'outils pratiques. 
  * Version:       1.0.0
  * Author:        Acary
  * Author URI:    https://acary.ca
@@ -14,3 +14,5 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 if ( ! defined( 'ACARYCLOUDHELPER_VERSION' ) ) define( 'ACARYCLOUDHELPER_VERSION', '1.0.0' );
 if ( ! defined( 'ACARYCLOUDHELPER_ABSPATH' ) ) define( 'ACARYCLOUDHELPER_ABSPATH', plugin_dir_path( __FILE__ ) );
+
+require_once( ACARYCLOUDHELPER_ABSPATH . '/core/plugin-register-settings.php' );
