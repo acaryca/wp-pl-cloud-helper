@@ -15,5 +15,6 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 if ( ! defined( 'ACARYCLOUDHELPER_VERSION' ) ) define( 'ACARYCLOUDHELPER_VERSION', '0.0.1' );
 if ( ! defined( 'ACARYCLOUDHELPER_ABSPATH' ) ) define( 'ACARYCLOUDHELPER_ABSPATH', plugin_dir_path( __FILE__ ) );
 
-require_once( ACARYCLOUDHELPER_ABSPATH . '/core/plugin-register-settings.php' );
 require_once( ACARYCLOUDHELPER_ABSPATH . '/core/plugin-update.php' );
+require_once( ACARYCLOUDHELPER_ABSPATH . '/core/plugin-register-settings.php' );
+require_once( ACARYCLOUDHELPER_ABSPATH . '/core/plugin-register-menu.php' );
