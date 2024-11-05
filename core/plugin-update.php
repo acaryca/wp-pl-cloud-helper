@@ -14,3 +14,7 @@
 
     $AcaryCloudHelperUpdateChecker->setBranch('main');
     $AcaryCloudHelperUpdateChecker->getVcsApi()->enableReleaseAssets();
+
+    if ( defined('ACARYCLOUDHELPER_VERSIONDEV') && ACARYCLOUDHELPER_VERSIONDEV === 'true' ) {
+        $AcaryCloudHelperUpdateChecker->getVcsApi()->setReleaseFilter('include-prereleases');
+    }
