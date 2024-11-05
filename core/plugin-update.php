@@ -13,3 +13,4 @@
     );
 
     $AcaryCloudHelperUpdateChecker->setBranch('main');
+    $AcaryCloudHelperUpdateChecker->getVcsApi()->enableReleaseAssets();
