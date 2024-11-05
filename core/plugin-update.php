@@ -8,7 +8,7 @@
 
     $AcaryCloudHelperUpdateChecker = PucFactory::buildUpdateChecker(
         'https://github.com/acaryca/wp-pl-cloud-helper',
-        __FILE__,
+        ACARYCLOUDHELPER_ABSPATH . '/acary-cloud-helper.php',
         'acary-cloud-helper'
     );
 
