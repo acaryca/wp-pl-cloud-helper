@@ -5,7 +5,7 @@ Tags: cloud, helper, outils, WordPress, multifonction
 Requires at least: 5.0
 Tested up to: 6.6.2
 Requires PHP: 7.2
-Stable tag: 0.0.1-dev-1105192701
+Stable tag: 0.0.1-dev-1105192834
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
