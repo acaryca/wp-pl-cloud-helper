@@ -229,6 +229,15 @@ add_action('phpmailer_init', function($phpmailer) {
         }
     }
 });
+add_filter('wp_mail', function( $args ){
+    if(get_option(ACARYCLOUDHELPER_PREFIX . 'sendmail_type') === 'sitemail') {
+        unset ( $args['to'] );
+        return $args;
+    } else {
+        return $args;
+    }
+}, 10,1);
+
 
 //send test email
 add_action('wp_ajax_acary_cloud_helper_sendmail_send_test_email', function() {
