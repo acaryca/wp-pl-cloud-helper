@@ -22,8 +22,8 @@ function acary_cloud_helper_sendmail_render_settings_page() {
                     <td>
                         <select name="<?php echo(ACARYCLOUDHELPER_PREFIX . 'sendmail_type'); ?>" style="width: 300px;max-width:100%;">
                             <option value="" <?php echo get_option(ACARYCLOUDHELPER_PREFIX . 'sendmail_type') === '' ? 'selected' : ''; ?>>Aucun</option>
-                            <option value="sitemail" <?php echo get_option(ACARYCLOUDHELPER_PREFIX . 'sendmail_type') === 'sitemail' ? 'selected' : ''; ?>>SiteMail</option>
                             <option value="smtp" <?php echo get_option(ACARYCLOUDHELPER_PREFIX . 'sendmail_type') === 'smtp' ? 'selected' : ''; ?>>SMTP</option>
+                            <option value="sitemail" <?php echo get_option(ACARYCLOUDHELPER_PREFIX . 'sendmail_type') === 'sitemail' ? 'selected' : ''; ?>>SiteMail</option>
                         </select>
                     </td>
                 </tr>

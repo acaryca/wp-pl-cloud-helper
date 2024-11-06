@@ -16,8 +16,7 @@ Ce plugin, conçu par Acary, est un plugin multifonction conçu pour les sites W
 Un plugin conçu par Acary pour les sites WordPress hébergés sur nos serveurs cloud. Ce plugin offre une variété d'outils utiles pour la gestion et la personnalisation de votre site WordPress, simplifiant certaines tâches et améliorant les performances et l'accessibilité des fonctionnalités cloud.
 
 **Fonctionnalités :**
-- Configuration de l'envoi de courriels
-- Utilitaire pour la cache
+- Configuration de l'envoi de courriels par SMTP ou Sitemail
 - Quelques intégrations avec le panneau de contrôle Acary Cloud
 
 **Support :**
@@ -30,4 +29,5 @@ Ce plugin s'installe automatiquement sur les sites hébergés sur nos serveurs c
 == Changelog ==
 
 = 0.0.1 =
+* Ajout de la fonctionnalité d'envoi de courriels par SMTP et Sitemail.
 * Version initiale du plugin.
