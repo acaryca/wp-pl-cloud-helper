@@ -30,12 +30,21 @@ jobs:
         run: |
           VERSION=${{ steps.infos.outputs.version }}${{ steps.infos.outputs.dev == 'true' && format('-dev-{0}', steps.date.outputs.date) || '' }}
           DEV=${{ steps.infos.outputs.dev }}
+
           # Mise à jour dans acary-cloud-helper.php
           sed -i "s/Version: .*/Version: $VERSION/g" acary-cloud-helper.php
           sed -i "s/if ( ! defined( 'ACARYCLOUDHELPER_VERSION' ) ) define( 'ACARYCLOUDHELPER_VERSION', '.*' );/if ( ! defined( 'ACARYCLOUDHELPER_VERSION' ) ) define( 'ACARYCLOUDHELPER_VERSION', '$VERSION' );/g" acary-cloud-helper.php
-          sed -i "s/if ( ! defined( 'ACARYCLOUDHELPER_VERSIONDEV' ) ) define( 'ACARYCLOUDHELPER_VERSIONDEV', '*' );/if ( ! defined( 'ACARYCLOUDHELPER_VERSIONDEV' ) ) define( 'ACARYCLOUDHELPER_VERSIONDEV', '$DEV' );/g" acary-cloud-helper.php
+
+          # Remplacer ACARYCLOUDHELPER_VERSIONDEV par true si DEV est true, sinon par false
+          if [ "$DEV" = "true" ]; then
+            sed -i "s/if ( ! defined( 'ACARYCLOUDHELPER_VERSIONDEV' ) ) define( 'ACARYCLOUDHELPER_VERSIONDEV', 'false' );/if ( ! defined( 'ACARYCLOUDHELPER_VERSIONDEV' ) ) define( 'ACARYCLOUDHELPER_VERSIONDEV', 'true' );/g" acary-cloud-helper.php
+          else
+            sed -i "s/if ( ! defined( 'ACARYCLOUDHELPER_VERSIONDEV' ) ) define( 'ACARYCLOUDHELPER_VERSIONDEV', 'true' );/if ( ! defined( 'ACARYCLOUDHELPER_VERSIONDEV' ) ) define( 'ACARYCLOUDHELPER_VERSIONDEV', 'false' );/g" acary-cloud-helper.php
+          fi
+
           # Mise à jour dans readme.txt
           sed -i "s/Stable tag: .*/Stable tag: $VERSION/g" readme.txt
+
 
       - name: Commit and push version changes
         run: |
