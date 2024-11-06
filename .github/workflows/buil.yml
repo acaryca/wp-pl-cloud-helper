@@ -3,6 +3,9 @@ on:
   push:
     branches: [main]
 
+permissions:
+  contents: write
+
 jobs:
   create-release:
     runs-on: ubuntu-latest
@@ -23,34 +26,25 @@ jobs:
           echo "::set-output name=version::$(jq -r .version INFOS.json)"
         shell: bash
 
-      - name: Create directory and move files
-        run: |
-          mkdir acary-cloud-helper
-          find . -maxdepth 1 ! -name 'acary-cloud-helper' ! -name 'README.md' ! -name '.github' ! -name '.git' ! -name '.gitignore' ! -name 'CHANGELOG.md' ! -name 'INFOS.json' -exec mv {} acary-cloud-helper/ \;
-
       - name: Change version in files
         run: |
           VERSION=${{ steps.infos.outputs.version }}${{ steps.infos.outputs.dev == 'true' && format('-dev-{0}', steps.date.outputs.date) || '' }}
           DEV=${{ steps.infos.outputs.dev }}
           # Mise à jour dans acary-cloud-helper.php
-          sed -i "s/Version: .*/Version: $VERSION/g" acary-cloud-helper/acary-cloud-helper.php
-          sed -i "s/if ( ! defined( 'ACARYCLOUDHELPER_VERSION' ) ) define( 'ACARYCLOUDHELPER_VERSION', '.*' );/if ( ! defined( 'ACARYCLOUDHELPER_VERSION' ) ) define( 'ACARYCLOUDHELPER_VERSION', '$VERSION' );/g" acary-cloud-helper/acary-cloud-helper.php
-          sed -i "s/define('ADNCOMM_CORE_PL_DEV', .*);/define('ADNCOMM_CORE_PL_DEV', $DEV);/g" acary-cloud-helper/acary-cloud-helper.php
+          sed -i "s/Version: .*/Version: $VERSION/g" acary-cloud-helper.php
+          sed -i "s/if ( ! defined( 'ACARYCLOUDHELPER_VERSION' ) ) define( 'ACARYCLOUDHELPER_VERSION', '.*' );/if ( ! defined( 'ACARYCLOUDHELPER_VERSION' ) ) define( 'ACARYCLOUDHELPER_VERSION', '$VERSION' );/g" acary-cloud-helper.php
+          sed -i "s/define('ADNCOMM_CORE_PL_DEV', .*);/define('ADNCOMM_CORE_PL_DEV', $DEV);/g" acary-cloud-helper.php
           # Mise à jour dans readme.txt
-          sed -i "s/Stable tag: .*/Stable tag: $VERSION/g" acary-cloud-helper/readme.txt
+          sed -i "s/Stable tag: .*/Stable tag: $VERSION/g" readme.txt
 
       - name: Commit and push version changes
+        uses: actions/checkout@v3
         run: |
-          git config --local user.name "github-actions[bot]"
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git add acary-cloud-helper/acary-cloud-helper.php acary-cloud-helper/readme.txt
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add acary-cloud-helper.php readme.txt
           git commit -m "Update version to $VERSION"
-          git push origin main
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Create zip of all the files named acary-cloud-helper.zip
-        run: zip -r acary-cloud-helper.zip acary-cloud-helper/
+          git push
 
       - name: Create release
         id: create_release
