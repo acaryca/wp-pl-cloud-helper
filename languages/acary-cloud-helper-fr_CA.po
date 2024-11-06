@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Acary Cloud\n"
-"POT-Creation-Date: 2024-11-05 19:43-0500\n"
-"PO-Revision-Date: 2024-11-05 19:45-0500\n"
+"POT-Creation-Date: 2024-11-05 20:04-0500\n"
+"PO-Revision-Date: 2024-11-05 20:04-0500\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr_CA\n"
@@ -15,15 +15,34 @@ msgstr ""
 "X-Poedit-WPHeader: acary-cloud-helper.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
-"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;"
-"_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.min.js\n"
 "X-Poedit-SearchPathExcluded-1: includes/plugin-update-checker-5.5/vendor\n"
 
-#: core/plugin-register-menu.php:7 core/plugin-register-menu.php:8
+#: admin/sendmail.php:8 core/plugin-register-menu.php:7
+#: core/plugin-register-menu.php:8
 msgid "Sending e-mails"
 msgstr "Envoi de courriels"
+
+#: admin/sendmail.php:10
+msgid ""
+"This page allows you to configure the sending of e-mails from your site."
+msgstr ""
+"Cette page vous permet de configurer l'envoi d'e-mails à partir de votre "
+"site."
+
+#: admin/sendmail.php:13
+msgid "Note:"
+msgstr "Remarque :"
+
+#: admin/sendmail.php:13
+msgid ""
+"If no e-mail system is configured, e-mails from this site may not be sent."
+msgstr ""
+"Si aucun système de courriel n'est configuré, il se peut que les courriels "
+"provenant de ce site ne soient pas envoyés."
 
 #: includes/plugin-update-checker-5.5/Puc/v5p5/Plugin/Ui.php:56
 msgid "View details"
@@ -54,8 +73,7 @@ msgstr "Une nouvelle version du plugin %s est disponible."
 #, php-format
 msgctxt "the plugin title"
 msgid "Could not determine if updates are available for %s."
-msgstr ""
-"Impossible de déterminer si des mises à jour sont disponibles pour %s."
+msgstr "Impossible de déterminer si des mises à jour sont disponibles pour %s."
 
 #: includes/plugin-update-checker-5.5/Puc/v5p5/Plugin/Ui.php:227
 #, php-format

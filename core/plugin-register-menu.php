@@ -11,8 +11,3 @@ add_action('admin_menu', function () {
         'acary_cloud_helper_sendmail_render_settings_page'
     );
 });
-add_filter('plugin_action_links_' . ACARYCLOUDHELPER_BASENAME, function ($links) {
-    $settings_link = '<a href="options-general.php?page=acary_cloud_helper_sendmail">' . __('Sending e-mails', 'acary-cloud-helper') . '</a>';
-    array_unshift($links, $settings_link);
-    return $links;
-});
