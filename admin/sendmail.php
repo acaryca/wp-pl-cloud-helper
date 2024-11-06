@@ -147,7 +147,6 @@ function acary_cloud_helper_sendmail_render_settings_page() {
                 });
             </script>
             <?php
-                //SEND A TEST EMAIL
                 if(isset($_POST['test-email'])) {
                     $to = $_POST['test-email'];
                     $subject = __('Test e-mail', 'acary-cloud-helper');
