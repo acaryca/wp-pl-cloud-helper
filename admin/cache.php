@@ -166,8 +166,7 @@ if (true === isset($_GET['acary-cloud-helper-cache']) && 'purge-entire-cache' ==
     if (false === empty($host)) {
         acary_cloud_helper_cache_purge_host($host);
     }
-    add_action('admin_notices', array( $this, 'admin_entire_cache_purge'));
-}
-function admin_entire_cache_purge() {
-    echo '<div id="noice" class="notice notice-success fade is-dismissible"><p><strong>' . esc_html__( 'Varnish Cache has been purged.', 'acary-cloud-helper' ) . '</strong></p></div>';
+    add_action('admin_notices', function() {
+        echo '<div id="noice" class="notice notice-success fade is-dismissible"><p><strong>' . esc_html__( 'Varnish Cache has been purged.', 'acary-cloud-helper' ) . '</strong></p></div>';
+    });
 }
