@@ -2,7 +2,7 @@
 /**
  * Plugin Name:   Acary Cloud
  * Description:   This plugin, developed by Acary, is a multi-functional plugin designed for WordPress sites hosted on our cloud servers, offering a range of practical tools.
- * Version: 0.0.2-dev-1106093853
+ * Version: 0.0.2-dev-1106094036
  * Author:        Acary
  * Author URI:    https://acary.ca
  * Text Domain:   acary-cloud-helper
@@ -12,7 +12,7 @@
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-if ( ! defined( 'ACARYCLOUDHELPER_VERSION' ) ) define( 'ACARYCLOUDHELPER_VERSION', '0.0.2-dev-1106093853' );
+if ( ! defined( 'ACARYCLOUDHELPER_VERSION' ) ) define( 'ACARYCLOUDHELPER_VERSION', '0.0.2-dev-1106094036' );
 if ( ! defined( 'ACARYCLOUDHELPER_VERSIONDEV' ) ) define( 'ACARYCLOUDHELPER_VERSIONDEV', true );
 if ( ! defined( 'ACARYCLOUDHELPER_PREFIX' ) ) define( 'ACARYCLOUDHELPER_PREFIX', 'acary_cloud_helper_' );
 if ( ! defined( 'ACARYCLOUDHELPER_DOMAIN' ) ) define( 'ACARYCLOUDHELPER_DOMAIN', 'acary-cloud-helper' );
