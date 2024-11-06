@@ -29,6 +29,9 @@ Ce plugin s'installe automatiquement sur les sites hébergés sur nos serveurs c
 
 == Changelog ==
 
+= 0.0.6 =
+* Mise à jour automatique du plugin.
+
 = 0.0.2 =
 * Ajout des configurations de la cache avec Varnish.
 

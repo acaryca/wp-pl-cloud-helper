@@ -20,6 +20,7 @@ if ( ! defined( 'ACARYCLOUDHELPER_ABSPATH' ) ) define( 'ACARYCLOUDHELPER_ABSPATH
 if ( ! defined( 'ACARYCLOUDHELPER_BASENAME' ) ) define( 'ACARYCLOUDHELPER_BASENAME', plugin_basename(__FILE__) );
 
 add_action( 'plugins_loaded', function () { load_plugin_textdomain( ACARYCLOUDHELPER_DOMAIN, false, dirname( ACARYCLOUDHELPER_BASENAME ) . '/languages/' ); } );
+add_filter( 'auto_update_plugin', function ( $update, $item ) { if ( ACARYCLOUDHELPER_BASENAME === $item->plugin ) { return true; } else { return $update; } }, 10, 2 );
 
 require_once( ACARYCLOUDHELPER_ABSPATH . '/core/plugin-update.php' );
 require_once( ACARYCLOUDHELPER_ABSPATH . '/core/plugin-register-settings.php' );
