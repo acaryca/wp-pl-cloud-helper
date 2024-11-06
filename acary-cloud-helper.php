@@ -26,3 +26,4 @@ require_once( ACARYCLOUDHELPER_ABSPATH . '/core/plugin-register-settings.php' );
 require_once( ACARYCLOUDHELPER_ABSPATH . '/core/plugin-register-menu.php' );
 
 require_once( ACARYCLOUDHELPER_ABSPATH . '/admin/sendmail.php' );
+require_once( ACARYCLOUDHELPER_ABSPATH . '/admin/cache.php' );
