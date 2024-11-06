@@ -26,7 +26,9 @@ require_once( ACARYCLOUDHELPER_ABSPATH . '/core/plugin-register-settings.php' );
 require_once( ACARYCLOUDHELPER_ABSPATH . '/core/plugin-register-menu.php' );
 
 require_once( ACARYCLOUDHELPER_ABSPATH . '/admin/sendmail.php' );
-require_once( ACARYCLOUDHELPER_ABSPATH . '/admin/cache.php' );
+if (file_exists(sprintf('%s/.varnish-cache/settings.json', rtrim(getenv('HOME'), '/'))) && is_user_logged_in()) {
+    require_once( ACARYCLOUDHELPER_ABSPATH . '/admin/cache.php' );
+}
 
 add_action('admin_enqueue_scripts', function() {
     if(is_user_logged_in() && is_admin_bar_showing()) {
