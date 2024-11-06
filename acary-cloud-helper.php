@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name:   Acary Cloud
- * Description:   Ce plugin, conçu par Acary, est un plugin multifonction conçu pour les sites WordPress hébergés sur nos serveurs cloud, offrant une gamme d'outils pratiques. 
+ * Description:   This plugin, developed by Acary, is a multi-functional plugin designed for WordPress sites hosted on our cloud servers, offering a range of practical tools.
  * Version: 0.0.1-dev-1105193728
  * Author:        Acary
  * Author URI:    https://acary.ca
