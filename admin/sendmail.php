@@ -198,13 +198,14 @@ add_action('phpmailer_init', function($phpmailer) {
         }
  
         $url = 'https://api.sitemail.ca/send/';
+        $msgContent = str_replace(array("\r\n", "\r", "\n"), '<br>', $phpmailer->Body);
         $data = array(
             'key' => get_option(ACARYCLOUDHELPER_PREFIX . 'sendmail_sitemail_key'),
             'host' => $_SERVER['HTTP_HOST'],
             'from' => get_option(ACARYCLOUDHELPER_PREFIX . 'sendmail_sitemail_from_name'),
             'to' => $phpmailer->getToAddresses(),
             'subject' => $phpmailer->Subject,
-            'message' => $phpmailer->Body,
+            'message' => $msgContent,
             'replyTo' => $phpmailer->getReplyToAddresses(),
             'attachments' => $attachments
         );
