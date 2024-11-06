@@ -12,6 +12,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
 
       - name: Get the date
         id: date
@@ -46,8 +48,10 @@ jobs:
           git commit -m "Update version to $VERSION"
           git push
 
-      - name: Wait for push to complete
-        run: sleep 5
+      - name: Fetch the latest changes
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
 
       - name: Create release
         id: create_release
