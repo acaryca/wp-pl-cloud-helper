@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Acary Cloud\n"
-"POT-Creation-Date: 2024-11-06 09:13-0500\n"
-"PO-Revision-Date: 2024-11-06 09:14-0500\n"
+"POT-Creation-Date: 2024-11-06 10:06-0500\n"
+"PO-Revision-Date: 2024-11-06 10:06-0500\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr_CA\n"
@@ -21,8 +21,8 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-0: *.min.js\n"
 "X-Poedit-SearchPathExcluded-1: includes/plugin-update-checker-5.5/vendor\n"
 
-#: admin/cache.php:11 core/plugin-register-menu.php:17
-#: core/plugin-register-menu.php:18 core/plugin-register-menu.php:31
+#: admin/cache.php:11 core/plugin-register-menu.php:18
+#: core/plugin-register-menu.php:19 core/plugin-register-menu.php:32
 msgid "Cache"
 msgstr "Cache"
 
@@ -30,7 +30,7 @@ msgstr "Cache"
 msgid "This page allows you to configure some cache settings."
 msgstr "Cette page vous permet de configurer certains paramètres de la cache."
 
-#: admin/cache.php:18 admin/sendmail.php:20 core/plugin-register-menu.php:46
+#: admin/cache.php:18 admin/sendmail.php:20 core/plugin-register-menu.php:47
 msgid "Settings"
 msgstr "Paramètres"
 
@@ -73,6 +73,12 @@ msgstr "Urls que Varnish Cache ne doit pas mettre en cache."
 #: admin/cache.php:115
 msgid "Settings saved successfully."
 msgstr "Les paramètres ont été enregistrés avec succès."
+
+#: admin/cache.php:170
+#, fuzzy
+#| msgid "Varnish Cache has been purged."
+msgid "Cache has been purged."
+msgstr "La cache a été purgé."
 
 #: admin/sendmail.php:8 core/plugin-register-menu.php:7
 #: core/plugin-register-menu.php:8
@@ -163,7 +169,7 @@ msgstr ""
 "l'expéditeur est bien celui que vous avez indiqué dans les paramètres de "
 "votre site."
 
-#: core/plugin-register-menu.php:37 core/plugin-register-menu.php:40
+#: core/plugin-register-menu.php:38 core/plugin-register-menu.php:41
 msgid "Purge all"
 msgstr "Purger tout"
 
@@ -208,8 +214,8 @@ msgid "There is no changelog available."
 msgstr "Il n'y a pas de changelog disponible."
 
 #. Plugin Name of the plugin/theme
-msgid "Acary Cloud"
-msgstr "Acary Cloud"
+msgid "Utilities"
+msgstr "Utilitaires"
 
 #. Description of the plugin/theme
 msgid ""
@@ -228,3 +234,6 @@ msgstr "Acary"
 #. Author URI of the plugin/theme
 msgid "https://acary.ca"
 msgstr "https://acary.ca"
+
+#~ msgid "Acary Cloud"
+#~ msgstr "Acary Cloud"

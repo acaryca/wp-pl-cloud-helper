@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name:   Acary Cloud
+ * Plugin Name:   Utilities
  * Description:   This plugin, developed by Acary, is a multi-functional plugin designed for WordPress sites hosted on our cloud servers, offering a range of practical tools.
  * Version: 0.0.2
  * Author:        Acary
