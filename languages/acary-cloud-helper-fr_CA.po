@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Acary Cloud\n"
-"POT-Creation-Date: 2024-11-05 20:04-0500\n"
-"PO-Revision-Date: 2024-11-05 20:04-0500\n"
+"POT-Creation-Date: 2024-11-05 20:17-0500\n"
+"PO-Revision-Date: 2024-11-05 20:17-0500\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr_CA\n"
@@ -43,6 +43,38 @@ msgid ""
 msgstr ""
 "Si aucun système de courriel n'est configuré, il se peut que les courriels "
 "provenant de ce site ne soient pas envoyés."
+
+#: admin/sendmail.php:32
+msgid "SiteMail Key"
+msgstr "Clé SiteMail"
+
+#: admin/sendmail.php:36 admin/sendmail.php:66
+msgid "Sender's name"
+msgstr "Nom de l'expéditeur"
+
+#: admin/sendmail.php:40
+msgid "SMTP host"
+msgstr "Hôte SMTP"
+
+#: admin/sendmail.php:44
+msgid "SMTP port"
+msgstr "Port SMTP"
+
+#: admin/sendmail.php:48
+msgid "Encryption type"
+msgstr "Type de chiffrement"
+
+#: admin/sendmail.php:58
+msgid "User name (e-mail)"
+msgstr "Nom d'utilisateur (e-mail)"
+
+#: admin/sendmail.php:62
+msgid "Password"
+msgstr "Mot de passe"
+
+#: admin/sendmail.php:70
+msgid "Sender's email"
+msgstr "Courriel de l'expéditeur"
 
 #: includes/plugin-update-checker-5.5/Puc/v5p5/Plugin/Ui.php:56
 msgid "View details"
