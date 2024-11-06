@@ -17,38 +17,29 @@ jobs:
         id: date
         run: |
           export TZ=America/Toronto
-          echo "::set-output name=date::$(date +'%m%d%H%M%S')"
+          echo "date=$(date +'%m%d%H%M%S')" >> $GITHUB_ENV
 
       - name: Read INFOS.json
         id: infos
         run: |
-          echo "::set-output name=dev::$(jq -r .dev INFOS.json)"
-          echo "::set-output name=version::$(jq -r .version INFOS.json)"
+          echo "dev=$(jq -r .dev INFOS.json)" >> $GITHUB_ENV
+          echo "version=$(jq -r .version INFOS.json)" >> $GITHUB_ENV
         shell: bash
 
       - name: Change version in files
         run: |
-          VERSION=${{ steps.infos.outputs.version }}${{ steps.infos.outputs.dev == 'true' && format('-dev-{0}', steps.date.outputs.date) || '' }}
-          DEV=${{ steps.infos.outputs.dev }}
-
+          VERSION="${{ env.version }}${{ env.dev == 'true' && '-dev-' || '' }}${{ env.dev == 'true' && env.date || '' }}"
+          DEV=${{ env.dev }}
           # Mise à jour dans acary-cloud-helper.php
           sed -i "s/Version: .*/Version: $VERSION/g" acary-cloud-helper.php
-          sed -i "s/if ( ! defined( 'ACARYCLOUDHELPER_VERSION' ) ) define( 'ACARYCLOUDHELPER_VERSION', '.*' );/if ( ! defined( 'ACARYCLOUDHELPER_VERSION' ) ) define( 'ACARYCLOUDHELPER_VERSION', '$VERSION' );/g" acary-cloud-helper.php
-
-          # Remplacer ACARYCLOUDHELPER_VERSIONDEV par true si DEV est true, sinon par false
-          if [ "$DEV" = "true" ]; then
-            sed -i "s/if ( ! defined( 'ACARYCLOUDHELPER_VERSIONDEV' ) ) define( 'ACARYCLOUDHELPER_VERSIONDEV', 'false' );/if ( ! defined( 'ACARYCLOUDHELPER_VERSIONDEV' ) ) define( 'ACARYCLOUDHELPER_VERSIONDEV', 'true' );/g" acary-cloud-helper.php
-          else
-            sed -i "s/if ( ! defined( 'ACARYCLOUDHELPER_VERSIONDEV' ) ) define( 'ACARYCLOUDHELPER_VERSIONDEV', 'true' );/if ( ! defined( 'ACARYCLOUDHELPER_VERSIONDEV' ) ) define( 'ACARYCLOUDHELPER_VERSIONDEV', 'false' );/g" acary-cloud-helper.php
-          fi
-
+          sed -i "s/define( 'ACARYCLOUDHELPER_VERSION', '.*' );/define( 'ACARYCLOUDHELPER_VERSION', '$VERSION' );/g" acary-cloud-helper.php
+          sed -i "s/define( 'ACARYCLOUDHELPER_VERSIONDEV', .*/define( 'ACARYCLOUDHELPER_VERSIONDEV', $DEV );/g" acary-cloud-helper.php
           # Mise à jour dans readme.txt
           sed -i "s/Stable tag: .*/Stable tag: $VERSION/g" readme.txt
 
-
       - name: Commit and push version changes
         run: |
-          VERSION=${{ steps.infos.outputs.version }}${{ steps.infos.outputs.dev == 'true' && format('-dev-{0}', steps.date.outputs.date) || '' }}
+          VERSION="${{ env.version }}${{ env.dev == 'true' && '-dev-' || '' }}${{ env.dev == 'true' && env.date || '' }}"
           git config user.name github-actions
           git config user.email github-actions@github.com
           git add acary-cloud-helper.php readme.txt
@@ -61,8 +52,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.PAT }}
         with:
-          tag_name: ${{ steps.infos.outputs.version }}${{ steps.infos.outputs.dev == 'true' && format('-dev-{0}', steps.date.outputs.date) || '' }}
-          release_name: ${{ steps.infos.outputs.version }}${{ steps.infos.outputs.dev == 'true' && format('-dev-{0}', steps.date.outputs.date) || '' }}
+          tag_name: "${{ env.version }}${{ env.dev == 'true' && '-dev-' || '' }}${{ env.dev == 'true' && env.date || '' }}"
+          release_name: "${{ env.version }}${{ env.dev == 'true' && '-dev-' || '' }}${{ env.dev == 'true' && env.date || '' }}"
           draft: false
-          prerelease: ${{ steps.infos.outputs.dev == 'true' }}
+          prerelease: ${{ env.dev == 'true' }}
           generate_release_notes: false
