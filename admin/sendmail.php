@@ -12,71 +12,70 @@ function acary_cloud_helper_sendmail_render_settings_page() {
         <p class="for_aucun" style="color: red;">
             <strong><?php echo __('Note:', 'acary-cloud-helper'); ?></strong> <?php echo __('If no e-mail system is configured, e-mails from this site may not be sent.', 'acary-cloud-helper'); ?>
         </p>
-        <form method="post" action="options.php">
+        <form method="post" action="options.php" class="acary_cloud_helper__block">
             <?php settings_fields(ACARYCLOUDHELPER_PREFIX . 'sendmail'); ?>
             <?php do_settings_sections(ACARYCLOUDHELPER_PREFIX . 'sendmail'); ?>
 
-            <div class="acary_cloud_helper__block">
-                <div class="acary_cloud_helper__block-header">
-                    <h3><?php echo __('Settings', 'acary-cloud-helper'); ?></h3>
-                </div>
-                <div class="acary_cloud_helper__block-content">
-                    <table class="form-table">
-                        <tr valign="top">
-                            <th scope="row">Type</th>
-                            <td>
-                                <select name="<?php echo(ACARYCLOUDHELPER_PREFIX . 'sendmail_type'); ?>" style="width: 300px;max-width:100%;">
-                                    <option value="" <?php echo get_option(ACARYCLOUDHELPER_PREFIX . 'sendmail_type') === '' ? 'selected' : ''; ?>>Aucun</option>
-                                    <option value="smtp" <?php echo get_option(ACARYCLOUDHELPER_PREFIX . 'sendmail_type') === 'smtp' ? 'selected' : ''; ?>>SMTP</option>
-                                    <option value="sitemail" <?php echo get_option(ACARYCLOUDHELPER_PREFIX . 'sendmail_type') === 'sitemail' ? 'selected' : ''; ?>>SiteMail</option>
-                                </select>
-                            </td>
-                        </tr>
+            <div class="acary_cloud_helper__block-header">
+                <h3><?php echo __('Settings', 'acary-cloud-helper'); ?></h3>
+            </div>
+            <div class="acary_cloud_helper__block-content">
+                <table class="form-table">
+                    <tr valign="top">
+                        <th scope="row">Type</th>
+                        <td>
+                            <select name="<?php echo(ACARYCLOUDHELPER_PREFIX . 'sendmail_type'); ?>" style="width: 300px;max-width:100%;">
+                                <option value="" <?php echo get_option(ACARYCLOUDHELPER_PREFIX . 'sendmail_type') === '' ? 'selected' : ''; ?>>Aucun</option>
+                                <option value="smtp" <?php echo get_option(ACARYCLOUDHELPER_PREFIX . 'sendmail_type') === 'smtp' ? 'selected' : ''; ?>>SMTP</option>
+                                <option value="sitemail" <?php echo get_option(ACARYCLOUDHELPER_PREFIX . 'sendmail_type') === 'sitemail' ? 'selected' : ''; ?>>SiteMail</option>
+                            </select>
+                        </td>
+                    </tr>
 
-                        <tr valign="top" class="for_sitemail">
-                            <th scope="row"><?php echo __('SiteMail Key', 'acary-cloud-helper'); ?></th>
-                            <td><input type="text" name="<?php echo(ACARYCLOUDHELPER_PREFIX . 'sendmail_sitemail_key'); ?>" style="width: 400px;max-width:100%;" value="<?php echo get_option(ACARYCLOUDHELPER_PREFIX . 'sendmail_sitemail_key'); ?>" /></td>
-                        </tr>
-                        <tr valign="top" class="for_sitemail">
-                            <th scope="row"><?php echo __('Sender\'s name', 'acary-cloud-helper'); ?></th>
-                            <td><input type="text" name="<?php echo(ACARYCLOUDHELPER_PREFIX . 'sendmail_sitemail_from_name'); ?>" style="width: 400px;max-width:100%;" value="<?php echo get_option(ACARYCLOUDHELPER_PREFIX . 'sendmail_sitemail_from_name'); ?>" /></td>
-                        </tr>
-                        <tr valign="top" class="for_smtp">
-                            <th scope="row"><?php echo __('SMTP host', 'acary-cloud-helper'); ?></th>
-                            <td><input type="text" name="<?php echo(ACARYCLOUDHELPER_PREFIX . 'sendmail_smtp_host'); ?>" style="width: 400px;max-width:100%;" value="<?php echo get_option(ACARYCLOUDHELPER_PREFIX . 'sendmail_smtp_host'); ?>" /></td>
-                        </tr>
-                        <tr valign="top" class="for_smtp">
-                            <th scope="row"><?php echo __('SMTP port', 'acary-cloud-helper'); ?></th>
-                            <td><input type="text" name="<?php echo(ACARYCLOUDHELPER_PREFIX . 'sendmail_smtp_port'); ?>" style="width: 400px;max-width:100%;" value="<?php echo get_option(ACARYCLOUDHELPER_PREFIX . 'sendmail_smtp_port'); ?>" /></td>
-                        </tr>
-                        <tr valign="top" class="for_smtp">
-                            <th scope="row"><?php echo __('Encryption type', 'acary-cloud-helper'); ?></th>
-                            <td>
-                                <select name="<?php echo(ACARYCLOUDHELPER_PREFIX . 'sendmail_smtp_encryption'); ?>" style="width: 300px;max-width:100%;">
-                                    <option value="none" <?php echo get_option(ACARYCLOUDHELPER_PREFIX . 'sendmail_smtp_encryption') === 'none' ? 'selected' : ''; ?>>None</option>
-                                    <option value="ssl" <?php echo get_option(ACARYCLOUDHELPER_PREFIX . 'sendmail_smtp_encryption') === 'ssl' ? 'selected' : ''; ?>>SSL</option>
-                                    <option value="tls" <?php echo get_option(ACARYCLOUDHELPER_PREFIX . 'sendmail_smtp_encryption') === 'tls' ? 'selected' : ''; ?>>TLS</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr valign="top" class="for_smtp">
-                            <th scope="row"><?php echo __('User name (e-mail)', 'acary-cloud-helper'); ?></th>
-                            <td><input type="text" name="<?php echo(ACARYCLOUDHELPER_PREFIX . 'sendmail_smtp_username'); ?>" style="width: 400px;max-width:100%;" value="<?php echo get_option(ACARYCLOUDHELPER_PREFIX . 'sendmail_smtp_username'); ?>" /></td>
-                        </tr>
-                        <tr valign="top" class="for_smtp">
-                            <th scope="row"><?php echo __('Password', 'acary-cloud-helper'); ?></th>
-                            <td><input type="password" name="<?php echo(ACARYCLOUDHELPER_PREFIX . 'sendmail_smtp_password'); ?>" style="width: 400px;max-width:100%;" value="<?php echo get_option(ACARYCLOUDHELPER_PREFIX . 'sendmail_smtp_password'); ?>" /></td>
-                        </tr>
-                        <tr valign="top" class="for_smtp">
-                            <th scope="row"><?php echo __('Sender\'s name', 'acary-cloud-helper'); ?></th>
-                            <td><input type="text" name="<?php echo(ACARYCLOUDHELPER_PREFIX . 'sendmail_smtp_from_name'); ?>" style="width: 400px;max-width:100%;" value="<?php echo get_option(ACARYCLOUDHELPER_PREFIX . 'sendmail_smtp_from_name'); ?>" /></td>
-                        </tr>
-                        <tr valign="top" class="for_smtp">
-                            <th scope="row"><?php echo __('Sender\'s email', 'acary-cloud-helper'); ?></th>
-                            <td><input type="text" name="<?php echo(ACARYCLOUDHELPER_PREFIX . 'sendmail_smtp_from_email'); ?>" style="width: 400px;max-width:100%;" value="<?php echo get_option(ACARYCLOUDHELPER_PREFIX . 'sendmail_smtp_from_email'); ?>" /></td>
-                        </tr>
-                    </table>
-                </div>
+                    <tr valign="top" class="for_sitemail">
+                        <th scope="row"><?php echo __('SiteMail Key', 'acary-cloud-helper'); ?></th>
+                        <td><input type="text" name="<?php echo(ACARYCLOUDHELPER_PREFIX . 'sendmail_sitemail_key'); ?>" style="width: 400px;max-width:100%;" value="<?php echo get_option(ACARYCLOUDHELPER_PREFIX . 'sendmail_sitemail_key'); ?>" /></td>
+                    </tr>
+                    <tr valign="top" class="for_sitemail">
+                        <th scope="row"><?php echo __('Sender\'s name', 'acary-cloud-helper'); ?></th>
+                        <td><input type="text" name="<?php echo(ACARYCLOUDHELPER_PREFIX . 'sendmail_sitemail_from_name'); ?>" style="width: 400px;max-width:100%;" value="<?php echo get_option(ACARYCLOUDHELPER_PREFIX . 'sendmail_sitemail_from_name'); ?>" /></td>
+                    </tr>
+                    <tr valign="top" class="for_smtp">
+                        <th scope="row"><?php echo __('SMTP host', 'acary-cloud-helper'); ?></th>
+                        <td><input type="text" name="<?php echo(ACARYCLOUDHELPER_PREFIX . 'sendmail_smtp_host'); ?>" style="width: 400px;max-width:100%;" value="<?php echo get_option(ACARYCLOUDHELPER_PREFIX . 'sendmail_smtp_host'); ?>" /></td>
+                    </tr>
+                    <tr valign="top" class="for_smtp">
+                        <th scope="row"><?php echo __('SMTP port', 'acary-cloud-helper'); ?></th>
+                        <td><input type="text" name="<?php echo(ACARYCLOUDHELPER_PREFIX . 'sendmail_smtp_port'); ?>" style="width: 400px;max-width:100%;" value="<?php echo get_option(ACARYCLOUDHELPER_PREFIX . 'sendmail_smtp_port'); ?>" /></td>
+                    </tr>
+                    <tr valign="top" class="for_smtp">
+                        <th scope="row"><?php echo __('Encryption type', 'acary-cloud-helper'); ?></th>
+                        <td>
+                            <select name="<?php echo(ACARYCLOUDHELPER_PREFIX . 'sendmail_smtp_encryption'); ?>" style="width: 300px;max-width:100%;">
+                                <option value="none" <?php echo get_option(ACARYCLOUDHELPER_PREFIX . 'sendmail_smtp_encryption') === 'none' ? 'selected' : ''; ?>>None</option>
+                                <option value="ssl" <?php echo get_option(ACARYCLOUDHELPER_PREFIX . 'sendmail_smtp_encryption') === 'ssl' ? 'selected' : ''; ?>>SSL</option>
+                                <option value="tls" <?php echo get_option(ACARYCLOUDHELPER_PREFIX . 'sendmail_smtp_encryption') === 'tls' ? 'selected' : ''; ?>>TLS</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr valign="top" class="for_smtp">
+                        <th scope="row"><?php echo __('User name (e-mail)', 'acary-cloud-helper'); ?></th>
+                        <td><input type="text" name="<?php echo(ACARYCLOUDHELPER_PREFIX . 'sendmail_smtp_username'); ?>" style="width: 400px;max-width:100%;" value="<?php echo get_option(ACARYCLOUDHELPER_PREFIX . 'sendmail_smtp_username'); ?>" /></td>
+                    </tr>
+                    <tr valign="top" class="for_smtp">
+                        <th scope="row"><?php echo __('Password', 'acary-cloud-helper'); ?></th>
+                        <td><input type="password" name="<?php echo(ACARYCLOUDHELPER_PREFIX . 'sendmail_smtp_password'); ?>" style="width: 400px;max-width:100%;" value="<?php echo get_option(ACARYCLOUDHELPER_PREFIX . 'sendmail_smtp_password'); ?>" /></td>
+                    </tr>
+                    <tr valign="top" class="for_smtp">
+                        <th scope="row"><?php echo __('Sender\'s name', 'acary-cloud-helper'); ?></th>
+                        <td><input type="text" name="<?php echo(ACARYCLOUDHELPER_PREFIX . 'sendmail_smtp_from_name'); ?>" style="width: 400px;max-width:100%;" value="<?php echo get_option(ACARYCLOUDHELPER_PREFIX . 'sendmail_smtp_from_name'); ?>" /></td>
+                    </tr>
+                    <tr valign="top" class="for_smtp">
+                        <th scope="row"><?php echo __('Sender\'s email', 'acary-cloud-helper'); ?></th>
+                        <td><input type="text" name="<?php echo(ACARYCLOUDHELPER_PREFIX . 'sendmail_smtp_from_email'); ?>" style="width: 400px;max-width:100%;" value="<?php echo get_option(ACARYCLOUDHELPER_PREFIX . 'sendmail_smtp_from_email'); ?>" /></td>
+                    </tr>
+                </table>
+
                 <?php submit_button(); ?>
             </div>
         </form>
@@ -107,26 +106,24 @@ function acary_cloud_helper_sendmail_render_settings_page() {
             });
         </script>
 
-        <form method="post" action="" id="testing-form" style="margin-top:100px;">
-            <div class="acary_cloud_helper__block">
-                <div class="acary_cloud_helper__block-header">
-                    <h3><?php echo __('Test the e-mail delivery', 'acary-cloud-helper'); ?></h3>
-                </div>
-                <div class="acary_cloud_helper__block-content">
-                    <p>
-                        <?php echo __('You can test the configuration using the form below.', 'acary-cloud-helper'); ?>
-                    </p>
-                    
-                    <table class="form-table">
-                        <tr valign="top">
-                            <th scope="row"><?php echo __('Recipient\'s e-mail', 'acary-cloud-helper'); ?></th>
-                            <td><input type="text" id="test-email" name="test-email" style="width: 400px;max-width:100%;" value="" /></td>
-                        </tr>
-                    </table>
-                    <p class="submit">
-                        <input type="submit" name="submit" id="submit" class="button button-primary" value="<?php echo __('Send', 'acary-cloud-helper'); ?>" spellcheck="false">
-                    </p>
-                </div>
+        <form method="post" action="" id="testing-form" class="acary_cloud_helper__block">
+            <div class="acary_cloud_helper__block-header">
+                <h3><?php echo __('Test the e-mail delivery', 'acary-cloud-helper'); ?></h3>
+            </div>
+            <div class="acary_cloud_helper__block-content">
+                <p>
+                    <?php echo __('You can test the configuration using the form below.', 'acary-cloud-helper'); ?>
+                </p>
+                
+                <table class="form-table">
+                    <tr valign="top">
+                        <th scope="row"><?php echo __('Recipient\'s e-mail', 'acary-cloud-helper'); ?></th>
+                        <td><input type="text" id="test-email" name="test-email" style="width: 400px;max-width:100%;" value="" /></td>
+                    </tr>
+                </table>
+                <p class="submit">
+                    <input type="submit" name="submit" id="submit" class="button button-primary" value="<?php echo __('Send', 'acary-cloud-helper'); ?>" spellcheck="false">
+                </p>
             </div>
         </form>
 

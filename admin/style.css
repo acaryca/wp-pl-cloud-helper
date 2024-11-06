@@ -31,6 +31,10 @@
     margin-top: 0;
 }
 
+.acary_cloud_helper__block-content p[class="submit"] {
+    margin-bottom: 0;
+}
+
 .acary_cloud_helper__block-content .form-table {
     margin-top: 0;
 }
