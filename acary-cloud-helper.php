@@ -29,8 +29,8 @@ require_once( ACARYCLOUDHELPER_ABSPATH . '/admin/sendmail.php' );
 require_once( ACARYCLOUDHELPER_ABSPATH . '/admin/cache.php' );
 
 add_action('admin_enqueue_scripts', function() {
-    if (true === is_user_logged_in() && true === is_admin_bar_showing() ) {
-        wp_register_style(ACARYCLOUDHELPER_DOMAIN, ACARYCLOUDHELPER_ABSPATH . 'admin/style.css', false, ACARYCLOUDHELPER_VERSION);
+    if(is_user_logged_in() && is_admin_bar_showing()) {
+        wp_register_style(ACARYCLOUDHELPER_DOMAIN, plugins_url('admin/style.css', __FILE__), false, ACARYCLOUDHELPER_VERSION);
         wp_enqueue_style(ACARYCLOUDHELPER_DOMAIN);
     }
-}
+});
