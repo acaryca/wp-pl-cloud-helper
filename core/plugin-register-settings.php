@@ -13,8 +13,12 @@ add_action('admin_init', function () {
     register_setting(ACARYCLOUDHELPER_PREFIX . 'sendmail', ACARYCLOUDHELPER_PREFIX . 'sendmail_smtp_password');
     register_setting(ACARYCLOUDHELPER_PREFIX . 'sendmail', ACARYCLOUDHELPER_PREFIX . 'sendmail_smtp_from_name');
     register_setting(ACARYCLOUDHELPER_PREFIX . 'sendmail', ACARYCLOUDHELPER_PREFIX . 'sendmail_smtp_from_email');
-
     if (get_option(ACARYCLOUDHELPER_PREFIX . 'sendmail_type') === false) {
         update_option(ACARYCLOUDHELPER_PREFIX . 'sendmail_type', '');
+    }
+
+    register_setting(ACARYCLOUDHELPER_PREFIX . 'cache', ACARYCLOUDHELPER_PREFIX . 'cache_devmode');
+    if (get_option(ACARYCLOUDHELPER_PREFIX . 'cache_devmode') === false) {
+        update_option(ACARYCLOUDHELPER_PREFIX . 'cache_devmode', '0');
     }
 });
