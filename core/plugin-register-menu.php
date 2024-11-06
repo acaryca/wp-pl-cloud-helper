@@ -35,7 +35,7 @@ add_action('admin_bar_menu', function ($adminbar) {
             'parent' => 'acary-cloud-helper',
             'id'     => 'acary-cloud-helper-purge',
             'title'  => __('Purge all', 'acary-cloud-helper'),
-            'href'   => wp_nonce_url(add_query_arg('clp-varnish-cache', 'purge-entire-cache'), 'purge-entire-cache'),
+            'href'   => wp_nonce_url(add_query_arg('acary-cloud-helper-cache', 'purge-entire-cache'), 'purge-entire-cache'),
             'meta'   => [
                 'title' => __( 'Purge all', 'acary-cloud-helper' ),
             ],

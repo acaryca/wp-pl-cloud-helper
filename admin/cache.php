@@ -120,6 +120,11 @@ function get_server() {
     $settings = get_cache_settings();
     return $settings['server'];
 }
+function get_tag_prefix() {
+    $settings = get_cache_settings();
+    return $settings['cacheTagPrefix'];
+}
+
 function acary_cloud_helper_cache_purge_host($host) {
     $headers = [
         'Host' => $host
@@ -154,4 +159,15 @@ function acary_cloud_helper_cache_purge(array $headers, $request_url = null): vo
         echo esc_html(sprintf('Varnish Cache Purge Failed, Error Message: %s', $error_message));
         exit();
     }
+}
+
+if (true === isset($_GET['acary-cloud-helper-cache']) && 'purge-entire-cache' == sanitize_text_field($_GET['acary-cloud-helper-cache'])) {
+    $host = (true === isset($_SERVER['HTTP_HOST']) && false === empty(sanitize_text_field($_SERVER['HTTP_HOST'])) ? sanitize_text_field($_SERVER['HTTP_HOST']) : '');
+    if (false === empty($host)) {
+        acary_cloud_helper_cache_purge_host($host);
+    }
+    add_action('admin_notices', array( $this, 'admin_entire_cache_purge'));
+}
+function admin_entire_cache_purge() {
+    echo '<div id="noice" class="notice notice-success fade is-dismissible"><p><strong>' . esc_html__( 'Varnish Cache has been purged.', 'acary-cloud-helper' ) . '</strong></p></div>';
 }
