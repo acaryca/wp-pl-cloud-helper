@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Acary Cloud\n"
-"POT-Creation-Date: 2024-11-05 20:17-0500\n"
-"PO-Revision-Date: 2024-11-05 20:17-0500\n"
+"POT-Creation-Date: 2024-11-05 20:29-0500\n"
+"PO-Revision-Date: 2024-11-05 20:30-0500\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr_CA\n"
@@ -75,6 +75,40 @@ msgstr "Mot de passe"
 #: admin/sendmail.php:70
 msgid "Sender's email"
 msgstr "Courriel de l'expéditeur"
+
+#: admin/sendmail.php:105
+msgid "Test the e-mail delivery"
+msgstr "Tester l'envoi des courriels"
+
+#: admin/sendmail.php:107
+msgid "You can test the configuration using the form below."
+msgstr ""
+"Vous pouvez tester la configuration en utilisant le formulaire ci-dessous."
+
+#: admin/sendmail.php:112
+msgid "Recipient's e-mail"
+msgstr "Courriel du destinataire"
+
+#: admin/sendmail.php:117
+msgid "Send"
+msgstr "Envoyer"
+
+#: admin/sendmail.php:126
+msgid "Sending..."
+msgstr "Envoi..."
+
+#: admin/sendmail.php:153
+msgid "Test e-mail"
+msgstr "Courriel de test"
+
+#: admin/sendmail.php:154
+msgid ""
+"The e-mail has been sent correctly. <br><br>Please check that the sender is "
+"the one you entered in your site settings."
+msgstr ""
+"L'e-mail a été envoyé correctement. <br><br>Veuillez vérifier que "
+"l'expéditeur est bien celui que vous avez indiqué dans les paramètres de "
+"votre site."
 
 #: includes/plugin-update-checker-5.5/Puc/v5p5/Plugin/Ui.php:56
 msgid "View details"

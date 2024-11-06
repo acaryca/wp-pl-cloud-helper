@@ -19,7 +19,7 @@ if ( ! defined( 'ACARYCLOUDHELPER_DOMAIN' ) ) define( 'ACARYCLOUDHELPER_DOMAIN',
 if ( ! defined( 'ACARYCLOUDHELPER_ABSPATH' ) ) define( 'ACARYCLOUDHELPER_ABSPATH', plugin_dir_path( __FILE__ ) );
 if ( ! defined( 'ACARYCLOUDHELPER_BASENAME' ) ) define( 'ACARYCLOUDHELPER_BASENAME', plugin_basename(__FILE__) );
 
-add_action( 'plugins_loaded', function () { load_plugin_textdomain( ACARYCLOUDHELPER_DOMAIN, false, ACARYCLOUDHELPER_ABSPATH . '/languages' ); } );
+add_action( 'plugins_loaded', function () { load_plugin_textdomain( ACARYCLOUDHELPER_DOMAIN, false, dirname( ACARYCLOUDHELPER_BASENAME ) . '/languages/' ); } );
 
 require_once( ACARYCLOUDHELPER_ABSPATH . '/core/plugin-update.php' );
 require_once( ACARYCLOUDHELPER_ABSPATH . '/core/plugin-register-settings.php' );
