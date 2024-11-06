@@ -115,4 +115,43 @@ if (isset($_POST['acary_cloud_helper_cache_save'])) {
         echo '<div class="notice notice-success is-dismissible"><p>' . __('Settings saved successfully.', 'acary-cloud-helper') . '</p></div>';
     });
 }
-?>
+
+function get_server() {
+    $settings = get_cache_settings();
+    return $settings['server'];
+}
+function acary_cloud_helper_cache_purge_host($host) {
+    $headers = [
+        'Host' => $host
+    ];
+    $request_url = get_server();
+
+    acary_cloud_helper_cache_purge($headers, $request_url);
+}
+function acary_cloud_helper_cache_purge(array $headers, $request_url = null): void {
+    try {
+        if (true === is_null($request_url)) {
+            $request_url = get_server();
+        }
+        $request_url = sprintf('http://%s', $request_url);
+        $response = wp_remote_request(
+            $request_url,
+            [
+                'sslverify' => false,
+                'method'    => 'PURGE',
+                'headers'   => $headers,
+            ]
+        );
+        $http_status_code = 0;
+        if (isset($response['response']['code'])) {
+            $http_status_code = $response['response']['code'];
+        }
+        if (200 != $http_status_code) {
+            throw new \Exception(sprintf('HTTP Status Code: %s', $http_status_code));
+        }
+    } catch (\Exception $e) {
+        $error_message = $e->getMessage();
+        echo esc_html(sprintf('Varnish Cache Purge Failed, Error Message: %s', $error_message));
+        exit();
+    }
+}

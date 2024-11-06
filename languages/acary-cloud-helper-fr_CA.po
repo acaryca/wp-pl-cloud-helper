@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Acary Cloud\n"
-"POT-Creation-Date: 2024-11-06 08:21-0500\n"
-"PO-Revision-Date: 2024-11-06 08:22-0500\n"
+"POT-Creation-Date: 2024-11-06 09:13-0500\n"
+"PO-Revision-Date: 2024-11-06 09:14-0500\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr_CA\n"
@@ -21,32 +21,58 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-0: *.min.js\n"
 "X-Poedit-SearchPathExcluded-1: includes/plugin-update-checker-5.5/vendor\n"
 
-#: admin/cache.php:8 core/plugin-register-menu.php:17
-#: core/plugin-register-menu.php:18
+#: admin/cache.php:11 core/plugin-register-menu.php:17
+#: core/plugin-register-menu.php:18 core/plugin-register-menu.php:31
 msgid "Cache"
 msgstr "Cache"
 
-#: admin/cache.php:10
+#: admin/cache.php:12
 msgid "This page allows you to configure some cache settings."
 msgstr "Cette page vous permet de configurer certains paramètres de la cache."
 
-#: admin/cache.php:18 admin/sendmail.php:20
+#: admin/cache.php:18 admin/sendmail.php:20 core/plugin-register-menu.php:46
 msgid "Settings"
 msgstr "Paramètres"
 
-#: admin/cache.php:22 admin/cache.php:29
-msgid "Development Mode"
-msgstr ""
+#: admin/cache.php:23
+msgid "Enable Varnish Cache"
+msgstr "Activer la cache Varnish"
 
-#: admin/cache.php:24
-msgid ""
-"Development mode allows you to disable cache for debugging or development "
-"purposes. When enabled, cache will be disabled and no cache will be used."
-msgstr ""
+#: admin/cache.php:29
+msgid "Varnish Server"
+msgstr "Serveur Varnish"
 
-#: admin/cache.php:33
-msgid "Enable development mode"
-msgstr ""
+#: admin/cache.php:35
+msgid "Cache Lifetime"
+msgstr "Durée de vie de la cache"
+
+#: admin/cache.php:38
+msgid "Cache Lifetime in seconds."
+msgstr "Durée de vie de la cache en secondes."
+
+#: admin/cache.php:42
+msgid "Cache Tag Prefix"
+msgstr "Préfixe de la cache"
+
+#: admin/cache.php:48
+msgid "Excluded Params"
+msgstr "Paramètres exclus"
+
+#: admin/cache.php:51
+msgid "List of GET parameters to disable caching."
+msgstr "Liste des paramètres GET permettant de désactiver la mise en cache."
+
+#: admin/cache.php:55
+msgid "Excludes"
+msgstr "Exclut"
+
+#: admin/cache.php:58
+msgid "Urls that Varnish Cache shouldn't cache."
+msgstr "Urls que Varnish Cache ne doit pas mettre en cache."
+
+#: admin/cache.php:115
+msgid "Settings saved successfully."
+msgstr "Les paramètres ont été enregistrés avec succès."
 
 #: admin/sendmail.php:8 core/plugin-register-menu.php:7
 #: core/plugin-register-menu.php:8
@@ -136,6 +162,10 @@ msgstr ""
 "L'e-mail a été envoyé correctement. <br><br>Veuillez vérifier que "
 "l'expéditeur est bien celui que vous avez indiqué dans les paramètres de "
 "votre site."
+
+#: core/plugin-register-menu.php:37 core/plugin-register-menu.php:40
+msgid "Purge all"
+msgstr "Purger tout"
 
 #: includes/plugin-update-checker/Puc/v5p5/Plugin/Ui.php:56
 msgid "View details"
