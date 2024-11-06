@@ -27,3 +27,10 @@ require_once( ACARYCLOUDHELPER_ABSPATH . '/core/plugin-register-menu.php' );
 
 require_once( ACARYCLOUDHELPER_ABSPATH . '/admin/sendmail.php' );
 require_once( ACARYCLOUDHELPER_ABSPATH . '/admin/cache.php' );
+
+add_action('admin_enqueue_scripts', function() {
+    if (true === is_user_logged_in() && true === is_admin_bar_showing() ) {
+        wp_register_style(ACARYCLOUDHELPER_DOMAIN, ACARYCLOUDHELPER_ABSPATH . 'admin/style.css', false, ACARYCLOUDHELPER_VERSION);
+        wp_enqueue_style(ACARYCLOUDHELPER_DOMAIN);
+    }
+}
