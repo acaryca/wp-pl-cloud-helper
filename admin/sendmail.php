@@ -5,12 +5,12 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 function acary_cloud_helper_sendmail_render_settings_page() {
     ?>
     <div class="wrap">
-        <h1><?php __('Sending e-mails', 'acary-cloud-helper') ?></h1>
+        <h1><?php echo __('Sending e-mails', 'acary-cloud-helper') ?></h1>
         <p>
-            <?php __('This page allows you to configure the sending of e-mails from your site.', 'acary-cloud-helper') ?>
+            <?php echo __('This page allows you to configure the sending of e-mails from your site.', 'acary-cloud-helper') ?>
         </p>
         <p class="for_aucun" style="color: red;">
-            <strong><?php __('Note:', 'acary-cloud-helper') ?></strong> <?php __('If no e-mail system is configured, e-mails from this site may not be sent.', 'acary-cloud-helper') ?>
+            <strong><?php echo __('Note:', 'acary-cloud-helper') ?></strong> <?php echo __('If no e-mail system is configured, e-mails from this site may not be sent.', 'acary-cloud-helper') ?>
         </p>
         <form method="post" action="options.php" id="acarycloud_mail_form">
             <?php settings_fields(ACARYCLOUDHELPER_PREFIX . 'sendmail'); ?>
@@ -29,23 +29,23 @@ function acary_cloud_helper_sendmail_render_settings_page() {
                 </tr>
 
                 <tr valign="top" class="for_sitemail">
-                    <th scope="row"><?php __('SiteMail Key', 'acary-cloud-helper') ?></th>
+                    <th scope="row"><?php echo __('SiteMail Key', 'acary-cloud-helper') ?></th>
                     <td><input type="text" name="<?php echo(ACARYCLOUDHELPER_PREFIX . 'sendmail_sitemail_key'); ?>" style="width: 400px;max-width:100%;" value="<?php echo get_option(ACARYCLOUDHELPER_PREFIX . 'sendmail_sitemail_key'); ?>" /></td>
                 </tr>
                 <tr valign="top" class="for_sitemail">
-                    <th scope="row"><?php __('Sender\'s name', 'acary-cloud-helper') ?></th>
+                    <th scope="row"><?php echo __('Sender\'s name', 'acary-cloud-helper') ?></th>
                     <td><input type="text" name="<?php echo(ACARYCLOUDHELPER_PREFIX . 'sendmail_sitemail_from_name'); ?>" style="width: 400px;max-width:100%;" value="<?php echo get_option(ACARYCLOUDHELPER_PREFIX . 'sendmail_sitemail_from_name'); ?>" /></td>
                 </tr>
                 <tr valign="top" class="for_smtp">
-                    <th scope="row"><?php __('SMTP host', 'acary-cloud-helper') ?></th>
+                    <th scope="row"><?php echo __('SMTP host', 'acary-cloud-helper') ?></th>
                     <td><input type="text" name="<?php echo(ACARYCLOUDHELPER_PREFIX . 'sendmail_smtp_host'); ?>" style="width: 400px;max-width:100%;" value="<?php echo get_option(ACARYCLOUDHELPER_PREFIX . 'sendmail_smtp_host'); ?>" /></td>
                 </tr>
                 <tr valign="top" class="for_smtp">
-                    <th scope="row"><?php __('SMTP port', 'acary-cloud-helper') ?></th>
+                    <th scope="row"><?php echo __('SMTP port', 'acary-cloud-helper') ?></th>
                     <td><input type="text" name="<?php echo(ACARYCLOUDHELPER_PREFIX . 'sendmail_smtp_port'); ?>" style="width: 400px;max-width:100%;" value="<?php echo get_option(ACARYCLOUDHELPER_PREFIX . 'sendmail_smtp_port'); ?>" /></td>
                 </tr>
                 <tr valign="top" class="for_smtp">
-                    <th scope="row"><?php __('Encryption type', 'acary-cloud-helper') ?></th>
+                    <th scope="row"><?php echo __('Encryption type', 'acary-cloud-helper') ?></th>
                     <td>
                         <select name="<?php echo(ACARYCLOUDHELPER_PREFIX . 'sendmail_smtp_encryption'); ?>" style="width: 300px;max-width:100%;">
                             <option value="none" <?php echo get_option(ACARYCLOUDHELPER_PREFIX . 'sendmail_smtp_encryption') === 'none' ? 'selected' : ''; ?>>None</option>
@@ -55,19 +55,19 @@ function acary_cloud_helper_sendmail_render_settings_page() {
                     </td>
                 </tr>
                 <tr valign="top" class="for_smtp">
-                    <th scope="row"><?php __('User name (e-mail)', 'acary-cloud-helper') ?></th>
+                    <th scope="row"><?php echo __('User name (e-mail)', 'acary-cloud-helper') ?></th>
                     <td><input type="text" name="<?php echo(ACARYCLOUDHELPER_PREFIX . 'sendmail_smtp_username'); ?>" style="width: 400px;max-width:100%;" value="<?php echo get_option(ACARYCLOUDHELPER_PREFIX . 'sendmail_smtp_username'); ?>" /></td>
                 </tr>
                 <tr valign="top" class="for_smtp">
-                    <th scope="row"><?php __('Password', 'acary-cloud-helper') ?></th>
+                    <th scope="row"><?php echo __('Password', 'acary-cloud-helper') ?></th>
                     <td><input type="password" name="<?php echo(ACARYCLOUDHELPER_PREFIX . 'sendmail_smtp_password'); ?>" style="width: 400px;max-width:100%;" value="<?php echo get_option(ACARYCLOUDHELPER_PREFIX . 'sendmail_smtp_password'); ?>" /></td>
                 </tr>
                 <tr valign="top" class="for_smtp">
-                    <th scope="row"><?php __('Sender\'s name', 'acary-cloud-helper') ?></th>
+                    <th scope="row"><?php echo __('Sender\'s name', 'acary-cloud-helper') ?></th>
                     <td><input type="text" name="<?php echo(ACARYCLOUDHELPER_PREFIX . 'sendmail_smtp_from_name'); ?>" style="width: 400px;max-width:100%;" value="<?php echo get_option(ACARYCLOUDHELPER_PREFIX . 'sendmail_smtp_from_name'); ?>" /></td>
                 </tr>
                 <tr valign="top" class="for_smtp">
-                    <th scope="row"><?php __('Sender\'s email', 'acary-cloud-helper') ?></th>
+                    <th scope="row"><?php echo __('Sender\'s email', 'acary-cloud-helper') ?></th>
                     <td><input type="text" name="<?php echo(ACARYCLOUDHELPER_PREFIX . 'sendmail_smtp_from_email'); ?>" style="width: 400px;max-width:100%;" value="<?php echo get_option(ACARYCLOUDHELPER_PREFIX . 'sendmail_smtp_from_email'); ?>" /></td>
                 </tr>
             </table>
