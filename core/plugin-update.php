@@ -2,7 +2,7 @@
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-require_once( ACARYCLOUDHELPER_ABSPATH . '/includes/plugin-update-checker-5.5/plugin-update-checker.php' );
+require_once( ACARYCLOUDHELPER_ABSPATH . '/includes/plugin-update-checker/plugin-update-checker.php' );
 
 use YahnisElsts\PluginUpdateChecker\v5\PucFactory;
 
