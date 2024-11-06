@@ -27,6 +27,10 @@
     font-size: 14px;
 }
 
+.acary_cloud_helper__block-content h2 {
+    margin-top: 0;
+}
+
 .acary_cloud_helper__block-content .form-table {
     margin-top: 0;
 }
