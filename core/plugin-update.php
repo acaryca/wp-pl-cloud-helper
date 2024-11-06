@@ -15,6 +15,6 @@ $AcaryCloudHelperUpdateChecker = PucFactory::buildUpdateChecker(
 $AcaryCloudHelperUpdateChecker->setBranch('main');
 $AcaryCloudHelperUpdateChecker->getVcsApi()->enableReleaseAssets();
 
-if ( defined('ACARYCLOUDHELPER_VERSIONDEV') && ACARYCLOUDHELPER_VERSIONDEV === 'true' ) {
+if ( defined('ACARYCLOUDHELPER_VERSIONDEV') && ACARYCLOUDHELPER_VERSIONDEV === true ) {
     $AcaryCloudHelperUpdateChecker->getVcsApi()->setReleaseFilter('include-prereleases');
 }
