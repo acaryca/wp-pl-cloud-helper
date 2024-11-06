@@ -33,7 +33,7 @@ jobs:
           # Mise à jour dans acary-cloud-helper.php
           sed -i "s/Version: .*/Version: $VERSION/g" acary-cloud-helper.php
           sed -i "s/if ( ! defined( 'ACARYCLOUDHELPER_VERSION' ) ) define( 'ACARYCLOUDHELPER_VERSION', '.*' );/if ( ! defined( 'ACARYCLOUDHELPER_VERSION' ) ) define( 'ACARYCLOUDHELPER_VERSION', '$VERSION' );/g" acary-cloud-helper.php
-          sed -i "s/define('ADNCOMM_CORE_PL_DEV', .*);/define('ADNCOMM_CORE_PL_DEV', $DEV);/g" acary-cloud-helper.php
+          sed -i "s/define('ACARYCLOUDHELPER_VERSIONDEV', .*);/define('ACARYCLOUDHELPER_VERSIONDEV', $DEV);/g" acary-cloud-helper.php
           # Mise à jour dans readme.txt
           sed -i "s/Stable tag: .*/Stable tag: $VERSION/g" readme.txt
 
