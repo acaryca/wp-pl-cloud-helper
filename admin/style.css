@@ -45,6 +45,10 @@
     margin-top: 0;
 }
 
+.acary_cloud_helper__block-content .form-table > tbody:nth-child(1) > tr:nth-child(1) > th:nth-child(1) {
+    margin-top: 0 !important;
+}
+
 .acary_cloud_helper__block-content .form-table td {
     padding: 10px 0px;
 }

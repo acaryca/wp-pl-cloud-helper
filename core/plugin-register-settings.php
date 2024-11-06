@@ -16,9 +16,4 @@ add_action('admin_init', function () {
     if (get_option(ACARYCLOUDHELPER_PREFIX . 'sendmail_type') === false) {
         update_option(ACARYCLOUDHELPER_PREFIX . 'sendmail_type', '');
     }
-
-    register_setting(ACARYCLOUDHELPER_PREFIX . 'cache', ACARYCLOUDHELPER_PREFIX . 'cache_devmode');
-    if (get_option(ACARYCLOUDHELPER_PREFIX . 'cache_devmode') === false) {
-        update_option(ACARYCLOUDHELPER_PREFIX . 'cache_devmode', '0');
-    }
 });
