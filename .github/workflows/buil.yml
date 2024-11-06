@@ -48,10 +48,11 @@ jobs:
           git commit -m "Update version to $VERSION"
           git push
 
-      - name: Fetch the latest changes
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
+      - name: Create and push tag
+        run: |
+          VERSION="${{ env.version }}${{ env.dev == 'true' && '-dev-' || '' }}${{ env.dev == 'true' && env.date || '' }}"
+          git tag $VERSION
+          git push origin $VERSION
 
       - name: Create release
         id: create_release
