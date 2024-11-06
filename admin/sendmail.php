@@ -199,6 +199,8 @@ add_action('phpmailer_init', function($phpmailer) {
  
         $url = 'https://api.sitemail.ca/send/';
         $msgContent = str_replace(array("\r\n", "\r", "\n"), '<br>', $phpmailer->Body);
+        $replyTo = $phpmailer->getReplyToAddresses();
+
         $data = array(
             'key' => get_option(ACARYCLOUDHELPER_PREFIX . 'sendmail_sitemail_key'),
             'host' => $_SERVER['HTTP_HOST'],
@@ -206,7 +208,7 @@ add_action('phpmailer_init', function($phpmailer) {
             'to' => $phpmailer->getToAddresses(),
             'subject' => $phpmailer->Subject,
             'message' => $msgContent,
-            'replyTo' => $phpmailer->getReplyToAddresses(),
+            'replyTo' => (json_encode(['email' => $replyTo])) ? json_encode(['email' => $replyTo]) : '',
             'attachments' => $attachments
         );
 
