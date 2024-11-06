@@ -12,7 +12,7 @@ function acary_cloud_helper_sendmail_render_settings_page() {
         <p class="for_aucun" style="color: red;">
             <strong><?php echo __('Note:', 'acary-cloud-helper'); ?></strong> <?php echo __('If no e-mail system is configured, e-mails from this site may not be sent.', 'acary-cloud-helper'); ?>
         </p>
-        <form method="post" action="options.php" id="acarycloud_mail_form">
+        <form method="post" action="options.php">
             <?php settings_fields(ACARYCLOUDHELPER_PREFIX . 'sendmail'); ?>
             <?php do_settings_sections(ACARYCLOUDHELPER_PREFIX . 'sendmail'); ?>
 
@@ -161,3 +161,80 @@ function acary_cloud_helper_sendmail_render_settings_page() {
     
     <?php
 }
+
+add_action('phpmailer_init', function($phpmailer) {
+    if(get_option(ACARYCLOUDHELPER_PREFIX . 'sendmail_type') === 'smtp') {
+        $phpmailer->isSMTP();
+        $phpmailer->Host = get_option(ACARYCLOUDHELPER_PREFIX . 'sendmail_smtp_host');
+        $phpmailer->Port = get_option(ACARYCLOUDHELPER_PREFIX . 'sendmail_smtp_port');
+        $phpmailer->SMTPAuth = true;
+        $phpmailer->Username = get_option(ACARYCLOUDHELPER_PREFIX . 'sendmail_smtp_username');
+        $phpmailer->Password = get_option(ACARYCLOUDHELPER_PREFIX . 'sendmail_smtp_password');
+        $phpmailer->SMTPSecure = get_option(ACARYCLOUDHELPER_PREFIX . 'sendmail_smtp_encryption');
+        $phpmailer->From = get_option(ACARYCLOUDHELPER_PREFIX . 'sendmail_smtp_from_email');
+        $phpmailer->FromName = get_option(ACARYCLOUDHELPER_PREFIX . 'sendmail_smtp_from_name');
+        $phpmailer->Sender = get_option(ACARYCLOUDHELPER_PREFIX . 'sendmail_smtp_from_email');
+    }
+
+    if(get_option(ACARYCLOUDHELPER_PREFIX . 'sendmail_type') === 'sitemail') {
+        // Attachments
+        $attachments = array();
+        if (!empty($phpmailer->getAttachments())) {
+            foreach ($phpmailer->getAttachments() as $attachment) {
+                $attachments[] = array(
+                    'filename' => $attachment[2],
+                    'content' => base64_encode(file_get_contents($attachment[0])),
+                    'encoding' => 'base64',
+                );
+            }
+        }
+ 
+        $url = 'https://api.sitemail.ca/send/';
+        $data = array(
+            'key' => get_option(ACARYCLOUDHELPER_PREFIX . 'sendmail_sitemail_key'),
+            'host' => $_SERVER['HTTP_HOST'],
+            'from' => get_option(ACARYCLOUDHELPER_PREFIX . 'sendmail_sitemail_from_name'),
+            'to' => $phpmailer->getToAddresses(),
+            'subject' => $phpmailer->Subject,
+            'message' => $phpmailer->Body,
+            'replyTo' => $phpmailer->getReplyToAddresses(),
+            'attachments' => $attachments
+        );
+
+        // Conversion des données en JSON
+        $jsonData = json_encode($data);
+
+        // Configuration des options HTTP
+        $response = wp_remote_post($url, array(
+            'body'    => $jsonData,
+            'headers' => array(
+                'Content-Type' => 'application/json',
+            ),
+        ));
+
+        if (is_wp_error($response)) {
+            error_log('Sitemail request failed: ' . $response->get_error_message());
+        } else {
+            $body = wp_remote_retrieve_body($response);
+            error_log('Sitemail response: ' . $body);
+        }
+    }
+});
+
+//send test email
+add_action('wp_ajax_acary_cloud_helper_sendmail_send_test_email', function() {
+    $email = $_POST['email'];
+    $subject = 'Test de courriel';
+    $message = 'Ceci est un test de courriel.';
+
+    $result = wp_mail($email, $subject, $message);
+
+    if($result) {
+        echo 'Le courriel a été envoyé avec succès.';
+    } else {
+        echo 'Une erreur est survenue lors de l\'envoi du courriel.';
+    }
+
+    wp_die();
+});
+add_action('wp_ajax_acary_cloud_helper_sendmail_send_test_email', 'acary_cloud_helper_sendmail_send_test_email');
